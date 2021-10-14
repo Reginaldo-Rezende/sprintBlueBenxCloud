@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <h1 >Cadastro de Clientes</h1>
+        </div>
+        <div class="col s6">
+            <img src="https://uploaddeimagens.com.br/images/003/477/013/full/BillyGates.PNG?1634055109" alt="billygates">
+        </div>
+    </div>
+
+    <form action="salvarcliente" method="post" th:object="${clienteobj}">
+        <label>ID</label>
+        <input name="id" th:field="*{id}" readonly="readonly">
+        <label>Nome</label>
+        <input name="nome" th:field="*{nome}">
+        <label>dataNasc</label>
+        <input name="dataNasc" th:field="*{dataNasc}">
+        <label>senha</label>
+        <input name="senha" th:field="*{senha}">
+        <label>email</label>
+        <input name="email" th:field="*{email}">
+        <label>telefone</label>
+        <input name="telefone" th:field="*{telefone}">
+
+        <input class="waves-effect light-blue darken-3 btn" type="submit" value="Salvar">
+    </form>
+    <a href="/">Home</a><br>
+    <a href="/listaclientes">Lista de Clientes</a><br>
+    <a href="/cadastrodocumento">Cadastrar um documento</a>
+
+
+    <table>
+        <tr th:each= "cliente : ${clientes}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td><a th:href="@{/editarcliente/{idcliente}(idcliente=${cliente.id})}">Editar</a></td>
+            <td><a th:href="@{/excluircliente/{idcliente}(idcliente=${cliente.id})}">Excluir</a></td>
+
+        </tr>
+
+    </table>
+
+    <script type="text/javascript" src="static/materialize/js/materialize.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</div>
+</body>
+</html>

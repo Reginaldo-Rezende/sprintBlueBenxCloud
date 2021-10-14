@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Documentos</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/materialize.min.css"  media="screen,projection"/>
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <h1 >Cadastro de Documento</h1>
+        </div>
+        <div class="col s6">
+            <img src="https://uploaddeimagens.com.br/images/003/477/013/full/BillyGates.PNG?1634055109" alt="billygates">
+        </div>
+    </div>
+    <form action="salvardocumento" method="post" th:object="${documentoobj}">
+        <label>ID</label>
+        <input name="id" th:field="*{id}" readonly="readonly">
+        <label>RG</label>
+        <input name="rg" th:field="*{rg}">
+        <label>CPF</label>
+        <input name="cpf" th:field="*{cpf}">
+
+        <input class="waves-effect light-blue darken-3 btn" type="submit" value="Salvar">
+    </form>
+    <a href="/">Home</a><br>
+    <a href="/listadocumentos">Lista de Fornecedores</a><br>
+    <a href="/cadastrocliente">Página Inicial</a>
+    <table>
+        <tr th:each= "documento : ${documentos}">
+            <td th:text="${documento.id}"></td>
+            <td th:text="${documento.rg}"></td>
+            <td th:text="${documento.cpf}"></td>
+
+            <td><a th:href="@{/editardocumento/{iddocumento}(iddocumento=${documento.id})}">Editar</a></td>
+            <td><a th:href="@{/excluirdocumento/{iddocumento}(iddocumento=${documento.id})}">Excluir</a></td>
+
+        </tr>
+
+    </table>
+
+    <script type="text/javascript" src="static/materialize/js/materialize.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</div>
+</body>
+</html>
